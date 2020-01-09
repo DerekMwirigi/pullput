@@ -1,0 +1,49 @@
+{
+    "base": "\/api\/",
+    "endpoints": {
+        "data-magic": {
+            "clear-data": {
+                "state": 1,
+                "url": "data-magic\/clear-data",
+                "method": "GET",
+                "oauthToken": 0
+            },
+            "data-points": {
+                "state": 1,
+                "url": "data-magic\/data-points",
+                "method": "GET",
+                "oauthToken": 0
+            },
+            "create": {
+                "state": 1,
+                "url": "data-magic\/create",
+                "method": "POST",
+                "oauthToken": 0
+            },
+            "update": {
+                "state": 1,
+                "url": "data-magic\/update",
+                "method": "POST",
+                "oauthToken": 0
+            },
+            "delete": {
+                "state": 1,
+                "url": "data-magic\/delete",
+                "method": "POST",
+                "oauthToken": 0
+            },
+            "view": {
+                "state": 1,
+                "url": "data-magic\/view",
+                "method": "POST",
+                "oauthToken": 0
+            },
+            "fetch": {
+                "state": 1,
+                "url": "data-magic\/fetch",
+                "method": "POST",
+                "oauthToken": 0
+            }
+        }
+    }
+}

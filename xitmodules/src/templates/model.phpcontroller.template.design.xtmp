@@ -1,0 +1,38 @@
+<?php
+    include 'model.php';
+    class {entityName} extends Model {
+        private $modelConfig;
+        public function __construct($debug = NULL)
+        {
+            $this->debug = $debug;
+            parent::__construct($this->debug);
+            $this->modelConfig = json_decode(file_get_contents("../../models/{entityId}-{entityName}.json"), true);
+        }
+
+        public function create_{entityName} ($_DATA) {
+            $model = $_DATA["_POSTRAW"];
+            $validInput = $this->validateModel($model, $this->modelConfig["valid_create_model"]);
+            if($validInput["success"]){
+                return $this->create('{entityName}', $model);
+            }
+            return $validInput;
+        }
+
+        public function update_{entityName} ($_DATA) {
+            $model = $_DATA["_POSTRAW"]["model"];
+            $keys = $_DATA["_POSTRAW"]["keys"];
+            $validInput = $this->validateModel($keys, $this->modelConfig["valid_update_model"]);
+            if($validInput["success"]){
+                return $this->update('{entityName}', $model, $keys);
+            }
+            return $validInput;
+        }
+
+        public function view_{entityName} ($_DATA) {
+            return $this->view('{entityName}', $_DATA);
+        }
+
+        public function fetch_{entityName} ($_DATA) {
+            return $this->fetch('{entityName}', $_DATA);
+        }
+    }

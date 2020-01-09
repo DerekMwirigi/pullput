@@ -1,0 +1,11 @@
+{
+    "valid_magic_view": {
+        "entityId": "Int||"
+    },
+    "valid_magic_fetch": {
+        "entityId": "Int||"
+    },
+    "magic_fetch_search": {
+
+    }
+}

@@ -1,0 +1,11 @@
+<?php 
+    include '../../controllers/{entityId}-{entityName}.php';
+    $_DATA = array(
+        "_SERVER"=>$_SERVER,
+        "_GET"=>$_GET,
+        "_POST"=>$_POST,
+        "_POSTRAW"=>json_decode(file_get_contents('php://input'), true)
+    );
+    $obj = new {entityName}();
+    echo  json_encode($obj->create_{entityName}($_DATA));
+    

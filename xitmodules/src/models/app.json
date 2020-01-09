@@ -1,0 +1,334 @@
+{
+    "models": {
+        "sysuser": {
+            "meta": {
+                "entityId": 0,
+                "entityName": "sysuser",
+                "tag": "sysuser",
+                "authorization": 1
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50 },
+                { "name": "token", "type": "longtext" },
+                { "name": "firstName", "type": "varchar", "length": 50, "null": 0 },
+                { "name": "lastName", "type": "varchar", "length": 50 },
+                { "name": "email", "type": "varchar", "length": 50 },
+                { "name": "mobile", "type": "int", "length": 12 },
+                { "name": "password", "type": "longtext" },
+                { "name": "firebaseToken", "type": "longtext" },
+                { "name": "avatar", "type": "longtext" },
+                { "name": "roleId", "type": "int", "length": 11, "default": 0 },
+                { "name": "createdOn", "type": "datetime" },
+                { "name": "createdById", "type": "longtext" },
+                { "name": "statusCode", "type": "int", "length": 11, "default": 1 },
+                { "name": "statusName", "type": "varchar", "length": 20, "default": "'active'" }
+            ],
+            "data": [
+                { "code": "00000", "token": "abcd", "firstName": "", "email": "admin@coderiver.com", "password": "" }
+            ],
+            "links": []
+        },
+        "audit_trail": {
+            "meta": {
+                "entityId": 1,
+                "entityName": "audit_trail",
+                "tag": "audit"
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50, "null": 0 },
+                { "name": "userId", "type": "longtext" },
+                { "name": "actionType", "type": "varchar", "length": 100, "null": 0 },
+                { "name": "description", "type": "longtext" },
+                { "name": "model", "type": "longtext" },
+                { "name": "createdOn", "type": "datetime" }
+            ],
+            "data": [],
+            "links": []
+        },
+        "users": {
+            "meta": {
+                "entityId": 10,
+                "entityName": "users",
+                "tag": "user",
+                "authorization": 1
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50 },
+                { "name": "token", "type": "longtext" },
+                { "name": "firstName", "type": "varchar", "length": 50, "null": 0 },
+                { "name": "lastName", "type": "varchar", "length": 50 },
+                { "name": "email", "type": "varchar", "length": 50 },
+                { "name": "mobile", "type": "int", "length": 12 },
+                { "name": "password", "type": "longtext" },
+                { "name": "firebaseToken", "type": "longtext" },
+                { "name": "avatar", "type": "longtext" },
+                { "name": "roleId", "type": "int", "length": 11, "default": 10 },
+                { "name": "createdOn", "type": "datetime" },
+                { "name": "createdById", "type": "longtext" },
+                { "name": "statusCode", "type": "int", "length": 11, "default": 1 },
+                { "name": "statusName", "type": "varchar", "length": 20, "default": "'active'" }
+            ],
+            "data": []
+        },
+        "applicants": {
+            "meta": {
+                "entityId": 11,
+                "entityName": "applicants",
+                "tag": "applicant",
+                "authorization": 1
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50 },
+                { "name": "token", "type": "longtext" },
+                { "name": "firstName", "type": "varchar", "length": 50, "null": 0 },
+                { "name": "lastName", "type": "varchar", "length": 50 },
+                { "name": "email", "type": "varchar", "length": 50 },
+                { "name": "mobile", "type": "int", "length": 12 },
+                { "name": "password", "type": "longtext" },
+                { "name": "firebaseToken", "type": "longtext" },
+                { "name": "avatar", "type": "longtext" },
+                { "name": "roleId", "type": "int", "length": 11, "default": 11 },
+                { "name": "createdOn", "type": "datetime" },
+                { "name": "createdById", "type": "longtext" },
+                { "name": "statusCode", "type": "int", "length": 11, "default": 1 },
+                { "name": "statusName", "type": "varchar", "length": 20, "default": "'active'" }
+            ],
+            "data": [],
+            "links": [
+                { "entityId": 12, "key": "token", "foreign": "applicantId", "livi": [0, 1], "status": 1 }
+            ]
+        },
+        "loans": {
+            "meta": {
+                "entityId": 12,
+                "entityName": "loans",
+                "tag": "loan"
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50 },
+                { "name": "applicantId", "type": "longtext" },
+                { "name": "loanTypeId", "type": "int", "length": 11 },
+                { "name": "docBarCode", "type": "text" },
+                { "name": "disbursedAmount", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "interestAmount", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "payableAmount", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "paymentAmotization", "type": "longtext" },
+                { "name": "createdOn", "type": "datetime" },
+                { "name": "createdById", "type": "longtext" },
+                { "name": "statusCode", "type": "int", "length": 11 },
+                { "name": "statusName", "type": "varchar", "length": 20 }
+            ],
+            "data": [],
+            "joints": [
+                { "entityId": 14, "key": "loanTypeId", "foreign": "id", "type": "left", "status": 1 }
+            ],
+            "links": [
+                { "entityId": 13, "key": "id", "foreign": "paidId", "livi": [0, 1], "status": 1 }
+            ]
+        },
+        "payments": {
+            "meta": {
+                "entityId": 13,
+                "entityName": "payments",
+                "tag": "payment"
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50 },
+                { "name": "entityId", "type": "int", "length": 11 },
+                { "name": "paidId", "type": "int", "length": 11 },
+                { "name": "paymentModeId", "type": "int", "length": 11 },
+                { "name": "billingAddressId", "type": "int", "length": 11 },
+                { "name": "amount", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "transactionCode", "type": "longtext" },
+                { "name": "decription", "type": "longtext" },
+                { "name": "createdOn", "type": "datetime" },
+                { "name": "createdById", "type": "longtext" },
+                { "name": "statusCode", "type": "int", "length": 11 },
+                { "name": "statusName", "type": "varchar", "length": 20 }
+            ],
+            "data": []
+        },
+        "loan_types": {
+            "meta": {
+                "entityId": 14,
+                "entityName": "loan_types",
+                "tag": "loan type"
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50 },
+                { "name": "type", "type": "varchar", "length": 100 },
+                { "name": "decription", "type": "longtext" },
+                { "name": "createdOn", "type": "datetime" },
+                { "name": "createdById", "type": "longtext" },
+                { "name": "statusCode", "type": "int", "length": 11 },
+                { "name": "statusName", "type": "varchar", "length": 20 }
+            ],
+            "data": []
+        },
+        "reciepts": {
+            "meta": {
+                "entityId": 15,
+                "entityName": "reciepts",
+                "tag": "reciept"
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50 },
+                { "name": "paymentId", "type": "int", "length": 11 },
+                { "name": "recieptNo", "type": "varchar", "length": 100 },
+                { "name": "amount", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "decription", "type": "longtext" },
+                { "name": "createdOn", "type": "datetime" },
+                { "name": "createdById", "type": "longtext" },
+                { "name": "statusCode", "type": "int", "length": 11 },
+                { "name": "statusName", "type": "varchar", "length": 20 }
+            ],
+            "data": []
+        },
+        "ledger_loans": {
+            "meta": {
+                "entityId": 16,
+                "entityName": "ledger_loans",
+                "tag": "ledger loan"
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50 },
+                { "name": "loanId", "type": "int", "length": 11 },
+                { "name": "dr", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "cr", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "openingBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "closingBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "decription", "type": "longtext" },
+                { "name": "createdOn", "type": "datetime" },
+                { "name": "createdById", "type": "longtext" },
+                { "name": "statusCode", "type": "int", "length": 11 },
+                { "name": "statusName", "type": "varchar", "length": 20 }
+            ],
+            "data": []
+        },
+        "ledger_loans_interest": {
+            "meta": {
+                "entityId": 17,
+                "entityName": "ledger_loans_interest",
+                "tag": "ledger loans interest"
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50 },
+                { "name": "loanId", "type": "int", "length": 11 },
+                { "name": "dr", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "cr", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "openingBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "closingBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "decription", "type": "longtext" },
+                { "name": "createdOn", "type": "datetime" },
+                { "name": "createdById", "type": "longtext" },
+                { "name": "statusCode", "type": "int", "length": 11 },
+                { "name": "statusName", "type": "varchar", "length": 20 }
+            ],
+            "data": []
+        },
+        "ledgers": {
+            "meta": {
+                "entityId": 18,
+                "entityName": "ledgers",
+                "tag": "ledgers"
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50 },
+                { "name": "entityId", "type": "int", "length": 11 },
+                { "name": "ledgeredId", "type": "int", "length": 11 },
+                { "name": "dr", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "cr", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "openingBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "closingBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "decription", "type": "longtext" },
+                { "name": "createdOn", "type": "datetime" },
+                { "name": "createdById", "type": "longtext" },
+                { "name": "statusCode", "type": "int", "length": 11 },
+                { "name": "statusName", "type": "varchar", "length": 20 }
+            ],
+            "data": []
+        },
+        "ledger_applicant": {
+            "meta": {
+                "entityId": 19,
+                "entityName": "ledger_applicant",
+                "tag": "ledger applicant"
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50 },
+                { "name": "applicantId", "type": "int", "length": 11 },
+                { "name": "dr", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "cr", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "openingBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "closingBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "decription", "type": "longtext" },
+                { "name": "createdOn", "type": "datetime" },
+                { "name": "createdById", "type": "longtext" },
+                { "name": "statusCode", "type": "int", "length": 11 },
+                { "name": "statusName", "type": "varchar", "length": 20 }
+            ],
+            "data": []
+        },
+        "ledger_banks": {
+            "meta": {
+                "entityId": 20,
+                "entityName": "ledger_banks",
+                "tag": "ledger banks"
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50 },
+                { "name": "bankId", "type": "int", "length": 11 },
+                { "name": "dr", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "cr", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "openingBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "closingBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "decription", "type": "longtext" },
+                { "name": "createdOn", "type": "datetime" },
+                { "name": "createdById", "type": "longtext" },
+                { "name": "statusCode", "type": "int", "length": 11 },
+                { "name": "statusName", "type": "varchar", "length": 20 }
+            ],
+            "data": []
+        },
+        "banks": {
+            "meta": {
+                "entityId": 21,
+                "entityName": "banks",
+                "tag": "banks"
+            },
+            "fields": [
+                { "name": "id", "type": "int", "length": 11, "null": 0, "pk": 1, "autoIncreament": 1 },
+                { "name": "code", "type": "varchar", "length": 50 },
+                { "name": "token", "type": "longtext" },
+                { "name": "key", "type": "longtext" },
+                { "name": "typeId", "type": "int", "length": 11 },
+                { "name": "accountName", "type": "varchar", "length": 255 },
+                { "name": "accountNumber", "type": "varchar", "length": 255 },
+                { "name": "actualBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "workingBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "minBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "maxBalance", "type": "double", "length": 11, "decimals": 2 },
+                { "name": "avatar", "type": "longtext" },
+                { "name": "decription", "type": "longtext" },
+                { "name": "createdOn", "type": "datetime" },
+                { "name": "createdById", "type": "longtext" },
+                { "name": "statusCode", "type": "int", "length": 11 },
+                { "name": "statusName", "type": "varchar", "length": 20 }
+            ],
+            "data": []
+        }
+    }
+}

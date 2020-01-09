@@ -1,0 +1,7 @@
+{
+    "otp": {
+        "request": {
+            "text": "<#> Verification code: {code} "
+        }
+    }
+}
