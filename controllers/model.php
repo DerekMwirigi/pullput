@@ -63,15 +63,15 @@ class Model extends EndPoint
         $model["code"] = $this->utils->generateRandom(11111, 99999, 5) . ':' . $this->dates->timeStamp();
         $model["createdOn"] = $this->dates->getDateTimeNow();
         $model["token"] = $this->utils->createToken();
-        if(isset($model["password"])){
+        if (isset($model["password"])) {
             $model["password"] = $this->utils->encryptString($model["password"]);
         }
-        if(isset($this->userModel) && count($this->userModel) > 0) {
+        if (isset($this->userModel) && count($this->userModel) > 0) {
             $model["createdById"] = $this->userModel["token"];
         }
         $dbRes = $this->db->insert($table, $model);
-        if($dbRes[0] == 1){
-            $this->audit_trail->createLog($this->userModel, 'INSERT', 'Created new user.', $model);
+        if ($dbRes[0] == 1) {
+            $this->audit_trail->createLog($this->userModel, 'INSERT', 'Created new ' . $table . '.', $model);
             return array(
                 "success" => true,
                 "status_code" => 1,
@@ -105,33 +105,34 @@ class Model extends EndPoint
 
     protected function authDetails($payLoad)
     {
-
     }
 }
 
-class AuditTrail extends EndPoint {
+class AuditTrail extends EndPoint
+{
 
     public function __construct($debug = NULL)
     {
         $this->debug = $debug;
         parent::__construct($this->debug);
     }
-    public function createLog ($userModel, $actionType, $description, $model) {
-        if(isset($userModel) && count($userModel) > 0) {
+    public function createLog($userModel, $actionType, $description, $model)
+    {
+        if (isset($userModel) && count($userModel) > 0) {
             $userModel = $userModel;
-        }else{
+        } else {
             $userModel = array(
-                "token"=>"0000_alesto_maps_8743543"
+                "token" => "0000_alesto_maps_8743543"
             );
         }
 
         $logStamp = array(
-            "code"=>$this->utils->generateRandom(11111, 99999, 5) . ':' . $this->dates->timeStamp(),
-            "userId"=>$userModel["token"],
-            "actionType"=>$actionType,
-            "description"=>$description,
-            "model"=>$model,
-            "createdOn"=>$this->dates->getDateTimeNow()
+            "code" => $this->utils->generateRandom(11111, 99999, 5) . ':' . $this->dates->timeStamp(),
+            "userId" => $userModel["token"],
+            "actionType" => $actionType,
+            "description" => $description,
+            "model" => $model,
+            "createdOn" => $this->dates->getDateTimeNow()
         );
         $this->db->insert('audit_trail', $logStamp);
     }
