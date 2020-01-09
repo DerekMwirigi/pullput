@@ -1,8 +1,8 @@
 {
     "type": "mysqli",
-    "host": "localhost",
-    "port": "3309",
-    "name": "geosat_crm",
-    "user": "root",
-    "pass": "password"
+    "host": "0.0.0.0",
+    "port": ":....",
+    "name": "____",
+    "user": "____",
+    "pass": "____"
 }

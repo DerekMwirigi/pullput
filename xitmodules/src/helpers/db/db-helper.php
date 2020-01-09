@@ -12,7 +12,7 @@
             $this->debug = $debug;
             
             $db_type  = $conn_details['type'];
-            $db_host  = $conn_details['host'].':'.$conn_details['port'];
+            $db_host  = $conn_details['host'].$conn_details['port'];
             $db_user  = $conn_details['user'];
             $db_pass  = $conn_details['pass'];
             $db_name  = $conn_details['name'];
